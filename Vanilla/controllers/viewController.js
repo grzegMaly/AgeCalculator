@@ -1,30 +1,35 @@
 const path = require('path');
 
 class ViewController {
-    getCalculatorPage(req, res, next) {
 
-        const filePath = path.join(__dirname, '..', 'public', 'index.html');
-        res
-            .status(200)
-            .sendFile(filePath, err => {
-            if (err) next(err);
-        })
+    constructor() {
+        this.htmlPath = path.join(__dirname, '..', 'public', 'html');
     }
 
-    getLoginPage(req, res, next) {
-        const filePath = path.join(__dirname, '..', 'public', 'login.html');
-        res.status(200)
+    getPage = (res, next, filename, statusCode = 200) => {
+        const filePath = path.join(this.htmlPath, filename);
+        return res.status(statusCode)
             .sendFile(filePath, err => {
-                if (err) next(err);
+                if (err) {
+                    next(err);
+                }
             })
     }
 
-    getRegisterPage(req, res, next) {
-        const filePath = path.join(__dirname, '..', 'public', 'register.html');
-        res.status(200)
-            .sendFile(filePath, err => {
-                if (err) next(err);
-            })
+    getCalculatorPage = (req, res, next) => {
+        this.getPage(res, next, 'index.html');
+    }
+
+    getLoginPage = (req, res, next) => {
+        this.getPage(res, next, 'login.html');
+    }
+
+    getRegisterPage = (req, res, next) => {
+        this.getPage(res, next, 'register.html');
+    }
+
+    getNotFoundPage = (req, res, next) => {
+        this.getPage(req, next, 'notFound.html', 404);
     }
 }
 

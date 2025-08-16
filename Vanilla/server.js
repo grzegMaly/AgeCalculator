@@ -1,4 +1,7 @@
 const dotEnv = require('dotenv');
+const app = require('./app');
+const {dbConnection} = require("./utils/db");
+
 dotEnv.config({
     path: './config.env'
 });
@@ -7,7 +10,6 @@ process.on('uncaughtException', err => {
     process.exit(1);
 });
 
-const app = require('./app');
 const raw = process.env.APP_PORT;
 const port = raw === undefined ? 5000 : Number(raw);
 if (!Number.isInteger(port) || port < 0 || port > 65535) {
@@ -15,15 +17,29 @@ if (!Number.isInteger(port) || port < 0 || port > 65535) {
     process.exit(1);
 }
 
-const server = app.listen(port);
-server.on('listening', () => {
-    console.log(`Server Listening on port: ${port}`);
-});
+let server;
+const startServer = async () => {
+    try {
+        await dbConnection();
+        server = app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
 
-server.on('error', err => {
-    console.error('server.on-error', err.name, err.message);
-    process.exit(1);
-})
+        server.on('listening', () => {
+            console.log(`Server Listening on port: ${port}`);
+        });
+
+        server.on('error', err => {
+            console.error('server.on-error', err.name, err.message);
+            process.exit(1);
+        })
+    } catch (error) {
+        console.error('Failed to connect to database', error);
+        process.exit(1);
+    }
+}
+
+startServer().then();
 
 process.on('unhandledRejection', err => {
     console.error('unhandledRejection', err.name, err.message);

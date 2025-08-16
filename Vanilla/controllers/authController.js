@@ -1,10 +1,32 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
+class TokenGenerator {
+    signToken(id) {
+        return jwt.sign(
+            {
+                id
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            }
+        )
+    }
+
+    async verifyToken(token) {
+        return jwt.verify(token, process.env.JWT_SECRET);
+    }
+}
+
 class AuthController {
+
+    constructor() {
+        this._tokenGenerator = new TokenGenerator();
+    }
+
     async protect(req, res, next) {
         let token;
-        console.log('dupa')
 
         if (req.headers.authorization && req.req.authorization.startsWith('Bearer')) {
             token = req.headers.authorization.split(' ')[1];
@@ -17,7 +39,7 @@ class AuthController {
         }
 
         try {
-            const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+            const decoded = await this._tokenGenerator.verifyToken(token);
 
             const freshUser = await User.findById(decoded.id);
             if (freshUser) {
