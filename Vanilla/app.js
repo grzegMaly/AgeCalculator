@@ -6,11 +6,19 @@ const backendRoutes = require('./routes/backend/backendRoutes');
 const path = require('path');
 const GlobalExceptionHandler = require('./controllers/exceptionController');
 const AppError = require("./utils/appError");
+const morgan = require('morgan');
+
+
 
 const app = express();
 
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+
 
 const limiter = rateLimit({
     max: process.env.MAX_REQUEST_LIMIT,

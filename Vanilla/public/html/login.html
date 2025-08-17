@@ -11,24 +11,26 @@
 </head>
 <body>
 
-<div class="login-form">
-    <h2>Log into your account</h2>
-    <form class="form form--login">
-        <div class="form__group">
-            <label for="email" class="form__label">Email Address</label>
-            <input type="email" id="email" class="form__input" placeholder="email@example.com" required>
+<main class="login-form centre__container">
+    <h2>Login</h2>
+    <div class="form__holder">
+        <form class="form form--login">
+            <div class="form__group">
+                <label for="email" class="form__label">Email Address</label>
+                <input type="text" id="email" class="form__input" placeholder="email@example.com">
+            </div>
+            <div class="form__group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form__input" placeholder="••••••••">
+            </div>
+            <div class="form__group">
+                <button class="button" id="authBtn" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="alternative">
+            <p>Don't have account? <a href="/register">Click Here</a></p>
         </div>
-        <div class="form__group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="form__input" placeholder="••••••••" required minlength="12">
-        </div>
-        <div class="form__group">
-            <button class="button" id="authBtn">Login</button>
-        </div>
-    </form>
-    <div class="register">
-        <p>Don't have account? <a href="/register">Click Here</a></p>
     </div>
-</div>
+</main>
 </body>
 </html>

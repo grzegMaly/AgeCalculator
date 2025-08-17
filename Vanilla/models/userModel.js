@@ -20,7 +20,8 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Password is required'],
         trim: true,
-        minLength: [12, "Password's length must be greater than 8 characters"]
+        minLength: [12, "Password's length must be greater than 8 characters"],
+        select: false
     }
 });
 
@@ -28,5 +29,9 @@ UserSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 12);
     next();
 });
+
+UserSchema.methods.correctPassword = async function (candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 
 module.exports = model('users', UserSchema);

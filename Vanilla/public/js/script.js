@@ -1,4 +1,4 @@
-import {calcAge} from "./calcAge.js";
+import {calcAge} from "./utils/calcAge.js";
 
 const form = document.querySelector('form')
 const birthdayEl = document.getElementById('birthday');

@@ -1,15 +1,15 @@
 const dotEnv = require('dotenv');
-const app = require('./app');
-const {dbConnection} = require("./utils/db");
-
 dotEnv.config({
     path: './config.env'
 });
+
+const app = require('./app');
+const {dbConnection} = require("./utils/db");
+
 process.on('uncaughtException', err => {
     console.error('uncaughtException', err.name, err.message);
     process.exit(1);
 });
-
 const raw = process.env.APP_PORT;
 const port = raw === undefined ? 5000 : Number(raw);
 if (!Number.isInteger(port) || port < 0 || port > 65535) {
