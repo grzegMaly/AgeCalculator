@@ -1,6 +1,6 @@
-Vanilla/.idea/
-Vanilla/node_modules/
-Vanilla/package-lock.json
+VanillaExpress/.idea/
+VanillaExpress/node_modules/
+VanillaExpress/package-lock.json
 
 # Logs
 ReactSpring/frontend/logs
