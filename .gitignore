@@ -1,3 +1,59 @@
 Vanilla/.idea/
 Vanilla/node_modules/
 Vanilla/package-lock.json
+
+# Logs
+ReactSpring/frontend/logs
+ReactSpring/frontend/*.log
+ReactSpring/frontend/npm-debug.log*
+ReactSpring/frontend/yarn-debug.log*
+ReactSpring/frontend/yarn-error.log*
+ReactSpring/frontend/pnpm-debug.log*
+ReactSpring/frontend/lerna-debug.log*
+
+ReactSpring/frontend/node_modules
+ReactSpring/frontend/dist
+ReactSpring/frontend/dist-ssr
+ReactSpring/frontend/*.local
+
+ReactSpring/# Editor directories and files
+ReactSpring/frontend/.vscode/*
+ReactSpring/frontend/!.vscode/extensions.json
+ReactSpring/frontend/.idea
+ReactSpring/frontend/.DS_Store
+ReactSpring/frontend/*.suo
+ReactSpring/frontend/*.ntvs*
+ReactSpring/frontend/*.njsproj
+ReactSpring/frontend/*.sln
+ReactSpring/frontend/*.sw?
+
+ReactSpring/backend/HELP.md
+ReactSpring/backend/target/
+ReactSpring/backend/.mvn/wrapper/maven-wrapper.jar
+ReactSpring/backend/.mvn/wrapper/maven-wrapper.properties
+ReactSpring/backend/!**/src/main/**/target/
+ReactSpring/backend/!**/src/test/**/target/
+### STS ###
+ReactSpring/backend/.apt_generated
+ReactSpring/backend/.classpath
+ReactSpring/backend/.factorypath
+ReactSpring/backend/.project
+ReactSpring/backend/.settings
+ReactSpring/backend/.springBeans
+ReactSpring/backend/.sts4-cache
+### IntelliJ IDEA ###
+ReactSpring/backend/.idea
+ReactSpring/backend/*.iws
+ReactSpring/backend/*.iml
+ReactSpring/backend/*.ipr
+### NetBeans ###
+ReactSpring/backend/nbproject/private/
+ReactSpring/backend/nbbuild/
+ReactSpring/backend/dist/
+ReactSpring/backend/nbdist/
+ReactSpring/backend/.nb-gradle/
+ReactSpring/backend/build/
+ReactSpring/backend/!**/src/main/**/build/
+ReactSpring/backend/!**/src/test/**/build/
+### VS Code ###
+ReactSpring/backend/.vscode/
